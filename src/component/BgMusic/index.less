@@ -1,11 +1,33 @@
 .bg-music{
-  background-color: black;
+  @font-face {
+    font-family: "iconfont"; /* Project id  */
+    src: url('../../static/iconfont.ttf?t=1652956487683') format('truetype');
+  }
+  
+  .iconfont {
+    font-family: "iconfont" !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .icon-bofang-m:before {
+    content: "\e7e1";
+  }
+  
+  .icon-zanting-m:before {
+    content: "\e7e4";
+  }
+
   .controller{
+    transition: all .3s;
     position: fixed;
-    width: 20px;
-    height: 20px;
-    background-color: aqua;
-    bottom: 20px;
-    right: 20px;
+    color: pink;
+    font-size: 30px;
+    bottom: 40px;
+    right: 40px;
+    &:hover{
+      color: palevioletred;
+    }
   }
 }

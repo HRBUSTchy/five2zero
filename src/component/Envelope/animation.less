@@ -1,0 +1,53 @@
+
+@keyframes topopen {
+  0%{
+    transform: rotateX(0);
+  }
+  100%{
+    transform: rotateX(120deg);
+  }
+}
+@keyframes wrapperopen {
+  0%{
+    opacity: 1;
+  }
+  50%{
+    opacity: 1;
+    top: 0;
+  }
+  75%{
+    opacity: 1;
+  }
+  100%{
+    // opacity: 0;
+    top: 50px;
+  }
+}
+@keyframes lettershow {
+  0%{
+
+  }
+  25%{
+
+  }
+  50%{
+
+  }
+  75%{
+
+  }
+  100%{
+
+  }
+}
+.wrapper-anim{
+  animation: wrapperopen 3s ease forwards;
+}
+
+.top-anim{
+  animation: topopen 1.5s cubic-bezier(0.33, 0, 0.25, 1) forwards
+}
+
+.letter-anim{
+  animation: lettershow 5s ease forwards;
+}

@@ -1,6 +1,6 @@
 
 import { useCallback, useRef } from "react";
-import "./index.less"
+
 // 只封装一个玫瑰，点击时打开
 const Rose = ()=>{
   const show = useRef(false)

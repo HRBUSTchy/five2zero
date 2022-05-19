@@ -1,0 +1,58 @@
+@media screen and (max-width:2000px) {
+  :root{
+    --width: 40vw;
+    --height: 25vw;
+    --border: calc(20vw);
+    --topborder: calc(15vw);
+    --marginbottom: -35vw;
+    --radius: calc(1vw);
+    --img:8vw;
+    --offset: 10vw;
+  }
+}
+@media screen and (max-width:750px) {
+  :root{
+    --width: 70vw;
+    --height: 50vw;
+    --border: calc(35vw);
+    --topborder: calc(30vw);
+    --marginbottom: -65vw;
+    --radius: calc(3vw);
+    --img: 15vw;
+    --offset: 20vw;
+  }
+}
+
+.envelope{
+  position: absolute;
+  z-index: 10000;
+  width: 100vw;
+  height: 100vh;
+  background: url("../../static/bg_img.png");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .top-side{
+    position: absolute;
+    top: 0;
+    .top-side-inner{
+      border: var(--border) solid transparent;
+      border-top-width: var(--topborder);
+      border-top-color: peru;
+      margin-bottom: var(--marginbottom);
+    }
+  }
+  .enter{
+    width: var(--img);
+    margin-top:var(--offset);
+    transition: opacity 0.3s;
+  }
+  .wrapper-side{
+    position: relative;
+    width: var(--width);
+    height: var(--height);
+    background-color: bisque;
+    border-radius: 0 0px var(--radius) var(--radius);
+    box-shadow: 5px 5px 20px #7f7f7f;
+  }
+}

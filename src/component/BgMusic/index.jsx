@@ -1,6 +1,5 @@
 import { useCallback, useRef, useState } from "react";
-
-import './index.less'
+import './index.less';
 const Music = (props) => {
   const BGM = useRef(null)
   const [playing,setPlay] = useState(false)
@@ -33,7 +32,9 @@ const Music = (props) => {
     {props.children}
     <div className="controller"
       onClick={()=>handleControl(playing)}>
-      {playing?<>1</>:<>2</>}
+      {BGM.current&&(playing? 
+      <i className="iconfont icon-zanting-m"></i>
+      :<i className="iconfont icon-bofang-m"></i>)}
     </div>
   </div>
   )
