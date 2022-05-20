@@ -1,58 +1,65 @@
-@media screen and (max-width:2000px) {
-  :root{
-    --width: 40vw;
-    --height: 25vw;
-    --border: calc(20vw);
-    --topborder: calc(15vw);
-    --marginbottom: -35vw;
-    --radius: calc(1vw);
-    --img:8vw;
-    --offset: 10vw;
-  }
-}
-@media screen and (max-width:750px) {
-  :root{
-    --width: 70vw;
-    --height: 50vw;
-    --border: calc(35vw);
-    --topborder: calc(30vw);
-    --marginbottom: -65vw;
-    --radius: calc(3vw);
-    --img: 15vw;
-    --offset: 20vw;
-  }
-}
-
 .envelope{
-  position: absolute;
+  position: relative;
   z-index: 10000;
   width: 100vw;
   height: 100vh;
-  background: url("../../static/bg_img.png");
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  .top-side{
+  .background{
     position: absolute;
     top: 0;
-    .top-side-inner{
-      border: var(--border) solid transparent;
-      border-top-width: var(--topborder);
-      border-top-color: peru;
-      margin-bottom: var(--marginbottom);
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: url("../../static/bg_img.png");
+  }
+  .top-wrapper{
+    position: absolute;
+    z-index: 3;
+    top:0;
+    .top-side{
+      position: absolute;
+      top: 0;
+      .top-side-inner{
+        border: var(--border) solid transparent;
+        border-top-width: var(--topborder);
+        border-top-color: peru;
+        margin-bottom: var(--marginbottom);
+      }
+      .enter{
+        width: var(--img);
+        margin-top:var(--offset);
+      }
     }
   }
-  .enter{
-    width: var(--img);
-    margin-top:var(--offset);
-    transition: opacity 0.3s;
+
+  .letter{
+    position: absolute;
   }
-  .wrapper-side{
+  .centerloc{
     position: relative;
+    flex: 0 0 var(--height);
     width: var(--width);
     height: var(--height);
+  }
+  .wrapper-side{
+    position: absolute;
+    z-index: 2;
+    height: 100%;
+    width: 100%;
     background-color: bisque;
     border-radius: 0 0px var(--radius) var(--radius);
     box-shadow: 5px 5px 20px #7f7f7f;
+  }
+  .letter-side{
+    z-index: 1;
+    position: absolute;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
   }
 }

@@ -1,21 +1,35 @@
 
-import { useCallback, useRef } from "react";
-
+import { useCallback, useEffect, useRef } from "react";
 // 只封装一个玫瑰，点击时打开
-const Rose = ()=>{
+
+const open = ()=>{
+  for(let i = 0;i<=14;i++){
+    document.getElementById(`animate${i}`).beginElement();
+  }
+}
+const Rose = (props)=>{
   const show = useRef(false)
-  const open = useCallback((event)=>{
-  if(!show.current){
-    for(let i = 0;i<=14;i++){
-      document.getElementById(`animate${i}`).beginElement();
-    }
+
+  const clickOpen = useCallback((event)=>{
+  if(!show.current&&!props.disableClick){
+    open()
     show.current = true
   }
-  },[])
+  },[props.disableClick])
+  useEffect(()=>{
+    if(props.open){
+      let timer = setTimeout(() => {
+        open()
+        clearTimeout(timer)
+        show.current = true
+      }, props.delay ?? 0);
+    }
+  },[props.delay,props.open])
+
   return (
-  <div className="rose" onClick={open}>
+  <div className="rose" onClick={clickOpen}>
     <div className="wrapper">
-      <svg id="svg" width="400px" viewBox="0 0 188 264"
+      <svg id="svg" style={{width:"var(--rose)",marginTop:"var(--roseTop)"}} viewBox="0 0 188 264"
         xmlns="http://www.w3.org/2000/svg">
         <defs>
           <radialGradient id="gradient-0" gradientUnits="userSpaceOnUse" cx="-107.308" cy="104.329" r="59.181"
@@ -219,6 +233,7 @@ const Rose = ()=>{
           </animate>
         </path>
       </svg>
+      <div className="shadow"></div>
     </div>
   </div>);
 }

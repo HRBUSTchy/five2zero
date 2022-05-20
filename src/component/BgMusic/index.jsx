@@ -1,18 +1,31 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useRef, useState, useEffect } from "react";
 import './index.less';
 const Music = (props) => {
   const BGM = useRef(null)
   const [playing,setPlay] = useState(false)
-  
-  const handleChildClick = useCallback(()=>{
-    if(!BGM.current){
-      BGM.current = new Audio();
-      BGM.current.src = props.src;
-      BGM.current.loop=true;
+  const [isFirst,setFirst] = useState(true)
+  useEffect(() => {
+    BGM.current = new Audio();
+    BGM.current.src = props.src;
+    BGM.current.preload = true;
+    BGM.current.loop=true;
+  }, [props.src])
+
+  const handleChildClick = useCallback((event)=>{
+    if(isFirst&&!props.disableClick){
       BGM.current.play()
       setPlay(true)
+      setFirst(false)
     }
-  },[props.src])
+  },[isFirst,props.disableClick])
+
+  useEffect(()=>{
+    if(isFirst&&props.play){
+      BGM.current.play()
+      setPlay(true)
+      setFirst(false)
+    }
+  },[props.play,isFirst])
 
   const handleControl = useCallback((playing)=>{
     const {current:bgm} = BGM
@@ -32,7 +45,7 @@ const Music = (props) => {
     {props.children}
     <div className="controller"
       onClick={()=>handleControl(playing)}>
-      {BGM.current&&(playing? 
+      {!isFirst&&(playing? 
       <i className="iconfont icon-zanting-m"></i>
       :<i className="iconfont icon-bofang-m"></i>)}
     </div>

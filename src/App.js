@@ -1,17 +1,14 @@
-import Rose from './component/Rose'
-import BgMusic from './component/BgMusic'
+import Artical from "./component/Article"
 import Envelope from './component/Envelope'
+import BackGround from "./component/BackGround";
 import './App.css';
+import './global/style/index.less'
 
-const music = require("./static/soft_bgm.m4a")
 function App() {
   return (
     <div className="App">
-      <Envelope letter={(
-        <BgMusic src = {music}>
-          <Rose />
-        </BgMusic>)}
-      />
+      <Envelope letterCompon={Artical}/>
+      <BackGround/>
     </div>
   );
 }

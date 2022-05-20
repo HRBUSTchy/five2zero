@@ -15,39 +15,94 @@
     opacity: 1;
     top: 0;
   }
+  51%{
+  }
   75%{
     opacity: 1;
   }
+  76%{
+    z-index: 3;
+  }
   100%{
-    // opacity: 0;
-    top: 50px;
+    opacity: 0;
+    top: 80px;
+    z-index: 3;
+  }
+}
+@keyframes wrapperslid {
+  0%{
+    opacity: 1;
+  }
+  50%{
+    opacity: 1;
+    top: 0;
+  }
+  75%{
+    opacity: 1;
+  }
+  76%{
+    z-index: 1;
+  }
+  100%{
+    opacity: 0;
+    top: 80px;
+    z-index: 1;
   }
 }
 @keyframes lettershow {
   0%{
-
+    top: 0;
+    z-index: 1;
   }
-  25%{
-
+  30%{
+    top: 0;
+    overflow: hidden;
   }
-  50%{
-
+  55%{
+    overflow: visible;
   }
-  75%{
-
+  60%{
+    top: calc(-1*var(--height));
+    overflow: visible;
+  }
+  61%{
+    z-index: 2;
+    overflow: visible;
   }
   100%{
-
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    overflow: visible;
   }
 }
+@keyframes bgexit {
+  0%{
+    opacity: 1;
+  }
+  50%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
 .wrapper-anim{
   animation: wrapperopen 3s ease forwards;
 }
-
-.top-anim{
-  animation: topopen 1.5s cubic-bezier(0.33, 0, 0.25, 1) forwards
+.wrapperslid-anim{
+  animation: wrapperslid 3s ease forwards;
 }
-
+.top-anim{
+  animation: topopen 1.5s ease forwards
+}
 .letter-anim{
-  animation: lettershow 5s ease forwards;
+  animation: lettershow 4.5s ease forwards;
+}
+.back-anim{
+  animation: bgexit 3s ease forwards;
 }
