@@ -1,3 +1,7 @@
+@font-face {
+  font-family: handwrite;
+  src: url('../src/static/hand.TTF') format('truetype');
+}
 .App {
   text-align: center;
 }

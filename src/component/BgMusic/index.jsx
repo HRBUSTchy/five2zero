@@ -4,6 +4,7 @@ const Music = (props) => {
   const BGM = useRef(null)
   const [playing,setPlay] = useState(false)
   const [isFirst,setFirst] = useState(true)
+
   useEffect(() => {
     BGM.current = new Audio();
     BGM.current.src = props.src;
@@ -45,7 +46,7 @@ const Music = (props) => {
     {props.children}
     <div className="controller"
       onClick={()=>handleControl(playing)}>
-      {!isFirst&&(playing? 
+      {!isFirst&&(playing ?
       <i className="iconfont icon-zanting-m"></i>
       :<i className="iconfont icon-bofang-m"></i>)}
     </div>

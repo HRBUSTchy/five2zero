@@ -1,15 +1,24 @@
-import {  useState } from 'react'
+import {  useEffect, useState, useRef } from 'react'
 import BgMusic from '../BgMusic'
+import useScrollBg from '../../hooks/useScrollBg'
+import Rose from '../Rose'
 import './index.less'
 import './animation.less'
 
 const music = require("../../static/soft_bgm.m4a")
 const img = require('../../static/enter.png')
+
 const Envelope = (props)=>{
+  const {startAction,scal,setBg} = useScrollBg()
   const {letterCompon: Letter} = props
   const [isOpen,setOpen] = useState(false)
   const [opened,setOpened] = useState(false)
+  const ros = useRef(null)
+  useEffect(()=>{
+    if(isOpen){ startAction();scal(ros.current)}
+  },[isOpen,startAction,scal])
   return (
+    <>
     <div className="envelope">
       <BgMusic src = {music} play={isOpen} disableClick/>
       <div className={`background ${isOpen ? 'back-anim':''}`}></div>
@@ -24,6 +33,7 @@ const Envelope = (props)=>{
                   src={img} 
                   onClick={()=>{
                     setOpen(true);
+                    setBg("rgb(233, 117, 30)")
                     setTimeout(()=>{
                       setOpened(true)
                     },4500)
@@ -32,12 +42,14 @@ const Envelope = (props)=>{
             </div>
         </div>
         <div className={`letter-side ${isOpen ? 'letter-anim':''}`}>
-          <div className={`letter`}>
-            <Letter opened={opened} />
+          <div ref={ros} className={`letter`}>
+            <Rose open={opened} disableClick/>
           </div>
         </div>
       </div>
     </div>
+    {opened&&<Letter opened={opened} />}
+    </>
   )
 }
 

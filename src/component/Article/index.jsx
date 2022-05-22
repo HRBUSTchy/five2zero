@@ -1,11 +1,13 @@
-import Rose from '../Rose'
 import Paper from '../Paper';
+import './index.less'
 
 const Artical = (props)=>{
+  
   return(
     <div className='artical'>
-      <Rose open={props.opened} disableClick/>
-      <Paper className=""></Paper>
+      <div className={`content guide-anim ${props.opened?'guide-anim':'22'}`}>
+        <Paper /> 
+      </div>
     </div>
   );
 }
